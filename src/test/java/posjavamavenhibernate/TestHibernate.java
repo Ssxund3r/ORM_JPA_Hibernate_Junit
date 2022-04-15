@@ -49,4 +49,20 @@ public class TestHibernate {
 
 	}
 
+	@Test
+	public void testUpdateMerge() {
+
+		GenericDao<UsuarioPessoa> genericDao = new GenericDao<UsuarioPessoa>();
+
+		UsuarioPessoa pessoa = genericDao.pesquisar(1L, UsuarioPessoa.class);
+
+		pessoa.setIdade(99);
+		pessoa.setNome("nome do Bibo atualizado");
+
+		pessoa = genericDao.updateMerge(pessoa);
+
+		System.out.println(pessoa);
+
+	}
+
 }
