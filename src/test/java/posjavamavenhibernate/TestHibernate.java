@@ -1,5 +1,7 @@
 package posjavamavenhibernate;
 
+import java.util.List;
+
 import org.junit.Test;
 
 import dao.GenericDao;
@@ -64,15 +66,29 @@ public class TestHibernate {
 		System.out.println(pessoa);
 
 	}
-	
+
 	@Test
 	public void testDelete() {
 
 		GenericDao<UsuarioPessoa> genericDao = new GenericDao<UsuarioPessoa>();
 
-		UsuarioPessoa pessoa = genericDao.pesquisar(5L, UsuarioPessoa.class);
-		
+		UsuarioPessoa pessoa = genericDao.pesquisar(6L, UsuarioPessoa.class);
+
 		genericDao.deletarPorId(pessoa);
+
+	}
+
+	@Test
+	public void testConsultaListaId() {
+
+		GenericDao<UsuarioPessoa> genericDao = new GenericDao<UsuarioPessoa>();
+
+		List<UsuarioPessoa> list = genericDao.listarTodosId(UsuarioPessoa.class);
+
+		for (UsuarioPessoa usuarioPessoa : list) {
+			System.out.println(usuarioPessoa);
+			System.out.println("---------------------------------------");
+		}
 
 	}
 
