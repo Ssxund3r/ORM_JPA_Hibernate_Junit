@@ -37,14 +37,24 @@ public class GenericDao<E> {
 		return e;
 	}
 
-	public E pesquisar(Long id, Class<E> entidade) { /*
-														 * Versão alternativa para Consulta do ID - Ao invés de passar 2
-														 * classes, então passamos 2 parâmetros
-														 */
-
+	public E pesquisar(Long id, Class<E> entidade) { //Versão alternativa para Consulta do ID - Ao invés de passar 2 classes, então passamos 2 parâmetros.
+														  														  
 		E e = (E) entityManager.find(entidade, id);
 
 		return e;
 	}
-
+	
+	public void deletarPorId(E entidade) {
+		
+		Object id = HibernateUtil.getPrimaryKey(entidade);
+		
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();
+		
+		entityManager.createNativeQuery("delete from " + entidade.getClass().getSimpleName().toLowerCase() + 
+				" where id =" + id).executeUpdate(); // Faz delete
+		
+		transaction.commit(); //Grava alteração no banco
+		
+	}
 }

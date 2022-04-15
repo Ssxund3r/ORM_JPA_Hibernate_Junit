@@ -64,5 +64,16 @@ public class TestHibernate {
 		System.out.println(pessoa);
 
 	}
+	
+	@Test
+	public void testDelete() {
+
+		GenericDao<UsuarioPessoa> genericDao = new GenericDao<UsuarioPessoa>();
+
+		UsuarioPessoa pessoa = genericDao.pesquisar(5L, UsuarioPessoa.class);
+		
+		genericDao.deletarPorId(pessoa);
+
+	}
 
 }
