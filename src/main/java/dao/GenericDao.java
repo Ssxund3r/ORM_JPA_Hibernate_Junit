@@ -74,5 +74,11 @@ public class GenericDao<E> {
 		return lista;
 
 	}
+	
+	public EntityManager getEntityManager() {
+		return entityManager;
+	}
+	
+	
 
 }
