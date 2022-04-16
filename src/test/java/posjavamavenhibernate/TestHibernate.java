@@ -5,6 +5,7 @@ import java.util.List;
 import org.junit.Test;
 
 import dao.GenericDao;
+import model.TelefoneUser;
 import model.UsuarioPessoa;
 
 public class TestHibernate {
@@ -173,5 +174,40 @@ public class TestHibernate {
 		}
 
 	}
+
+	@Test
+	public void testGravaTelefone() {
+
+		GenericDao genericDao = new GenericDao();
+
+		UsuarioPessoa pessoa = (UsuarioPessoa) genericDao.pesquisar(1L, UsuarioPessoa.class);
+
+		TelefoneUser telefoneUser = new TelefoneUser();
+
+		telefoneUser.setTipo("Casa");
+		telefoneUser.setNumero("348853569");
+		telefoneUser.setUsuarioPessoa(pessoa);
+
+		genericDao.salvar(telefoneUser);
+
+	}
+	
+	@Test
+	public void testConsultaTelefone() {
+
+		GenericDao genericDao = new GenericDao();
+
+		UsuarioPessoa pessoa = (UsuarioPessoa) genericDao.pesquisar(1L, UsuarioPessoa.class);
+
+		for (TelefoneUser fone : pessoa.getTelefoneUsers()) {
+			//System.out.println(fone); //Apliquei Anotação ToString aqui.
+			System.out.println(fone.getNumero()); 
+			System.out.println(fone.getTipo());
+			System.out.println(fone.getUsuarioPessoa().getNome());
+			System.out.println("--------------------------------------");
+		}
+
+	}
+	
 
 }
