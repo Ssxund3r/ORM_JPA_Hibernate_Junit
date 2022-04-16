@@ -120,4 +120,19 @@ public class TestHibernate {
 
 	}
 
+	@Test
+	public void testQueryListParameter() {
+
+		GenericDao<UsuarioPessoa> genericDao = new GenericDao<UsuarioPessoa>();
+
+		List<UsuarioPessoa> list = genericDao.getEntityManager()
+				.createQuery("from UsuarioPessoa where nome = :nome or sobrenome = :sobrenome")
+				.setParameter("nome", "Fausto").setParameter("sobrenome", "Silva").getResultList();
+
+		for (UsuarioPessoa usuarioPessoa : list) {
+			System.out.println(usuarioPessoa);
+		}
+
+	}
+
 }
