@@ -147,4 +147,31 @@ public class TestHibernate {
 
 	}
 
+	@Test
+	public void testNamedQueryOne() {
+
+		GenericDao<UsuarioPessoa> genericDao = new GenericDao<UsuarioPessoa>();
+
+		List<UsuarioPessoa> list = genericDao.getEntityManager().createNamedQuery("UsuarioPessoa.todos")
+				.getResultList();
+
+		for (UsuarioPessoa usuarioPessoa : list) {
+			System.out.println(usuarioPessoa);
+		}
+	}
+
+	@Test
+	public void testNamedQueryTwo() {
+
+		GenericDao<UsuarioPessoa> genericDao = new GenericDao<UsuarioPessoa>();
+
+		List<UsuarioPessoa> list = genericDao.getEntityManager().createNamedQuery("UsuarioPessoa.BuscaPorNome")
+				.setParameter("nome", "Fausto").getResultList();
+
+		for (UsuarioPessoa usuarioPessoa : list) {
+			System.out.println(usuarioPessoa);
+		}
+
+	}
+
 }
