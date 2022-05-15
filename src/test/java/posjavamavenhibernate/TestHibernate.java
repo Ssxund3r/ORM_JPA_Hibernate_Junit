@@ -12,7 +12,6 @@ public class TestHibernate {
 
 	@Test
 	public void testHibernateUtil() {
-
 		GenericDao<UsuarioPessoa> genericDao = new GenericDao<UsuarioPessoa>();
 
 		UsuarioPessoa usuarioPessoa = new UsuarioPessoa();
